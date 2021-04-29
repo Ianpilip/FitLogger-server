@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Training day</h1>
+    <form action="/calendar/new-training-day" method="POST">
+        <label for="year">
+            Year
+            <input type="text" name="year" id="year">
+        </label>
+        <br>
+        <label for="month">
+            Month
+            <input type="text" name="month" id="month">
+        </label>
+        <br>
+        <label for="day">
+            Day
+            <input type="text" name="day" id="day">
+        </label>
+        <br>
+        <button type="submit" name="btn">CREATE</button>
+    </form>
+
+    <br><br>
+
+    <h1>Get calendar</h1>
+    <form action="/calendar/get-all/601fff79b2752168327800fa" method="GET">
+        <button type="submit" name="btn">GET</button>
+    </form>
+</body>
+</html>
