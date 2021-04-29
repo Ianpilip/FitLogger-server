@@ -156,7 +156,15 @@ router.get('/get-all/:userID/:tokenID', async (req, res) => {
 
         if(Object.keys(response.validationErrors).length !== 0) return res.send(response)
 
-        const workouts = await Calendar.find({userID: req.params.userID})
+        const workouts = await Calendar.find({userID: req.params.userID}).lean()
+
+        await Promise.all(workouts.map(async workout => {
+            await Promise.all(workout.exercise.map(async (item, index) => {
+                exercise = await Exercise.findById(workout.exercise[index].exerciseID)
+                workout.exercise[index].exerciseName = exercise?.name // exercise.name can be null in the case when an exercise was deleted
+            }))
+            workout.uom = uom
+        }))
 
         //@TODO: make dynamic checker of undefined, pass the second param, e.g., ['year', 'month', day]
         function groupByTest(array) {
