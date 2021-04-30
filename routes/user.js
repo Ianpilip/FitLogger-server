@@ -6,7 +6,7 @@ const crypto = require('crypto')
 
 const User = require('../models/user')
 const UserRestorePassword = require('../models/user-restore-password')
-const { mongoObjectIdGenerator } = require('../utils/development')
+const { mongoObjectIdGenerator, sleep } = require('../utils/development')
 const { groupBy, sortByKey } = require('../utils/calendar')
 const { generateToken } = require('../utils/user')
 const { salt } = require('../constants/user')
@@ -170,6 +170,7 @@ router.post('/auth', async (req, res) => {
 			response.body.lastUpdate = user.updated_at
 		}
 
+		// sleep(1000)
 		return res.send(response)
 
     } catch (error) {

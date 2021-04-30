@@ -14,6 +14,22 @@ const mongoObjectIdGenerator = () => {
     }).toLowerCase();
 };
 
+
+/**
+ * Stops I/O thread
+ * Is used while testing long response from server (development process)
+ * @param {int} milliseconds
+ */
+const sleep = milliseconds => {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
+
 module.exports = {
-    mongoObjectIdGenerator
+    mongoObjectIdGenerator,
+    sleep
 }

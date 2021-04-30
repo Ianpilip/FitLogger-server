@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'))
 })
 
-// регистрируем роуты
+
 app.use('/calendar', calendarRoute)
 app.use('/exercise', exerciseRoute)
 app.use('/user', userRoute)
